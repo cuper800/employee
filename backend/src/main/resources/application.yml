@@ -1,0 +1,25 @@
+server:
+  port: ${SERVER_PORT:8088}
+
+spring:
+  application:
+    name: employee-seating-system
+  datasource:
+    # 預設連線本機 PostgreSQL 17，可用環境變數覆寫
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/seating_db}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 30000
+
+# 前端開發伺服器位址 (供 CORS 設定)
+app:
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173}
+
+logging:
+  level:
+    com.esunbank.seating: INFO
+    org.springframework.jdbc.core: INFO
