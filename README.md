@@ -306,9 +306,11 @@ employee-seating-system/
 | 軟體 | 版本 |
 | --- | --- |
 | JDK | 17 以上 |
-| Apache Maven | 3.6 以上 |
+| Apache Maven | **選用**（專案已附 Maven Wrapper `mvnw`，沒裝 Maven 也能 build） |
 | Node.js | 18 以上（建議 LTS） |
 | PostgreSQL | 17（其他近版亦可） |
+
+> 後端附了 **Maven Wrapper**（`backend/mvnw`、`backend/mvnw.cmd`），第一次執行會自動下載對應版本的 Maven，因此**評分者只要有 JDK 17 即可建置**，不需先安裝 Maven。下方指令把 `mvn` 換成 `./mvnw`（Windows 用 `.\mvnw.cmd`）即可。
 
 ---
 
@@ -333,14 +335,14 @@ psql -U postgres -d seating_db -f DB/03_sample_data.sql
 ```powershell
 cd backend
 $env:DB_PASSWORD = "你的資料庫密碼"   # 視需要再設 DB_URL / DB_USERNAME
-mvn spring-boot:run
+.\mvnw.cmd spring-boot:run            # 或已裝 Maven 者：mvn spring-boot:run
 ```
 
 或先打包成可執行 JAR 再啟動：
 
 ```powershell
 cd backend
-mvn clean package
+.\mvnw.cmd clean package              # 第一次會自動下載 Maven；macOS/Linux 用 ./mvnw
 $env:DB_PASSWORD = "你的資料庫密碼"
 java -jar target/employee-seating-system-1.0.0.jar
 ```
