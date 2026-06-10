@@ -1,0 +1,19 @@
+# 統一換行字元，避免跨平台 (Windows/macOS/Linux) 因 CRLF/LF 差異造成問題
+
+# 預設：文字檔自動偵測，存入 repo 一律正規化為 LF
+* text=auto
+
+# Maven Wrapper 的 Unix 腳本必須是 LF，否則在 macOS/Linux 無法執行
+mvnw       text eol=lf
+*.sh       text eol=lf
+
+# Windows 批次檔必須是 CRLF
+mvnw.cmd   text eol=crlf
+*.cmd      text eol=crlf
+*.bat      text eol=crlf
+
+# 二進位檔不做換行轉換
+*.jar      binary
+*.png      binary
+*.jpg      binary
+*.ico      binary
